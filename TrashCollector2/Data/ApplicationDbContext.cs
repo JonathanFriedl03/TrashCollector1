@@ -11,6 +11,7 @@ namespace TrashCollector2.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -19,11 +20,11 @@ namespace TrashCollector2.Data
         {
             base.OnModelCreating(builder);
             builder.Entity<IdentityRole>().HasData(new IdentityRole
-            {
-                Name = "Admin",
-                NormalizedName = "ADMIN"
-            },
-            new IdentityRole
+            //{
+            //    Name = "Admin",
+            //    NormalizedName = "ADMIN"
+            //},
+            //new IdentityRole
             {
                 Name = "Customer",
                 NormalizedName = "CUSTOMER"
