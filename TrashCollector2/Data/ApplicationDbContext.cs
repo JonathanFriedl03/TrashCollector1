@@ -4,11 +4,13 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TrashCollector2.Models;
 
 namespace TrashCollector2.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        public DbSet<Customer> Customers { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -20,7 +22,19 @@ namespace TrashCollector2.Data
             {
                 Name = "Admin",
                 NormalizedName = "ADMIN"
-            });
+            },
+            new IdentityRole
+            {
+                Name = "Customer",
+                NormalizedName = "CUSTOMER"
+            },
+            new IdentityRole
+            {
+                Name = "Employee",
+                NormalizedName = "EMPLOYEE"
+            }
+            );
         }
+        public DbSet<TrashCollector2.Models.Customer> Customer { get; set; }
     }
-}
+}//var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
