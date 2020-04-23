@@ -17,11 +17,15 @@ namespace TrashCollector2.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         public string Address { get; set; }
-        [Display(Name = "Zip Code")]
+        [Display(Name = "Zip Code")]        
         public int ZipCode { get; set; }
-        public DayOfWeek DayToPickUp { get; set; }
+        [Display(Name = "Pick Up Day")]
+        public DayOfWeek PickUpDay { get; set; }
+        [Display(Name = "One Time Pick Up")]
         public DayOfWeek OneTimePickUp { get; set; }
+        [Display(Name = "Start of Suspension")]
         public DateTime StartOfSuspension { get; set; }
+        [Display(Name = "End of Suspension")]
         public DateTime EndOfSupspension { get; set; }
         public double Budget { get; set; }
 

@@ -36,6 +36,6 @@ namespace TrashCollector2.Data
             }
             );
         }
-        public DbSet<TrashCollector2.Models.Customer> Customer { get; set; }
+        
     }
 }//var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);

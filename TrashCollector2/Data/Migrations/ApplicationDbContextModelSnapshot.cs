@@ -48,15 +48,15 @@ namespace TrashCollector2.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "af44a73d-5b37-44bd-925e-9f3da6a4bc58",
-                            ConcurrencyStamp = "6e659065-1466-4bd2-82d2-7f363c8c0b0a",
+                            Id = "5b5fcfcc-81fa-4086-afcd-342c892eea92",
+                            ConcurrencyStamp = "13862bb3-c321-4f44-b0c1-0ecda92973e1",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "bec23e0e-6e24-432e-8185-0d80b0de3f7e",
-                            ConcurrencyStamp = "d6cf3966-8503-4f07-8913-3ef59e85d79b",
+                            Id = "a808dd89-77af-4aca-812e-af1eeab34da7",
+                            ConcurrencyStamp = "6a83e370-bacc-429e-84da-74efb92cefbb",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });
@@ -244,9 +244,6 @@ namespace TrashCollector2.Data.Migrations
                     b.Property<double>("Budget")
                         .HasColumnType("float");
 
-                    b.Property<int>("DayToPickUp")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("EndOfSupspension")
                         .HasColumnType("datetime2");
 
@@ -262,6 +259,9 @@ namespace TrashCollector2.Data.Migrations
                     b.Property<int>("OneTimePickUp")
                         .HasColumnType("int");
 
+                    b.Property<int>("PickUpDay")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartOfSuspension")
                         .HasColumnType("datetime2");
 
@@ -272,7 +272,36 @@ namespace TrashCollector2.Data.Migrations
 
                     b.HasIndex("IdentityUserId");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("TrashCollector2.Models.Employee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PickUpDay")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ZipCode")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -327,6 +356,13 @@ namespace TrashCollector2.Data.Migrations
                 });
 
             modelBuilder.Entity("TrashCollector2.Models.Customer", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
+                });
+
+            modelBuilder.Entity("TrashCollector2.Models.Employee", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()

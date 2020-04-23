@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,8 +12,10 @@ using TrashCollector2.Models;
 
 namespace TrashCollector2.Controllers
 {
+    [Authorize(Roles = "Employee")]
     public class EmployeesController : Controller
     {
+        
         private readonly ApplicationDbContext _context;
 
         public EmployeesController(ApplicationDbContext context)
@@ -22,8 +26,11 @@ namespace TrashCollector2.Controllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Employees.Include(e => e.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var myEmployeeProfile = _context.Employees.Where(e => e.IdentityUserId == userId).SingleOrDefault();
+            var customersDb = _context.Customers.Include(f => f.IdentityUser).ToList();
+            return View(myEmployeeProfile);
+
         }
 
         // GET: Employees/Details/5
@@ -57,7 +64,7 @@ namespace TrashCollector2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,ZipCode,IdentityUserId")] Employee employee)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,ZipCode,PickUpDay,IdentityUserId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
