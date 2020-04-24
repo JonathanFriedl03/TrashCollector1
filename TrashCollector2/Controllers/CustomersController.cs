@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TrashCollector2.Data;
 using TrashCollector2.Models;
+using TrashCollector2.ViewModels;
 
 namespace TrashCollector2.Controllers
 {
@@ -24,7 +25,7 @@ namespace TrashCollector2.Controllers
 
         // GET: Customers
         public async Task<IActionResult> Index()
-        {            
+        {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var myCustomerProfile = _context.Customers.Where(q => q.IdentityUserId == userId).SingleOrDefault();
             var applicationDbContext = _context.Customers.Include(c => c.IdentityUser);

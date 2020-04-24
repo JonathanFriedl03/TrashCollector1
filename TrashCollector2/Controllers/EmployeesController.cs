@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TrashCollector2.Data;
 using TrashCollector2.Models;
+using TrashCollector2.ViewModels;
 
 namespace TrashCollector2.Controllers
 {
@@ -29,6 +30,11 @@ namespace TrashCollector2.Controllers
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var myEmployeeProfile = _context.Employees.Where(e => e.IdentityUserId == userId).SingleOrDefault();
             var customersDb = _context.Customers.Include(f => f.IdentityUser).ToList();
+            EmployeeViewModel employeeViewModel = new EmployeeViewModel()
+            {
+                Customers = customersDb,
+                Employee = myEmployeeProfile
+            };
             return View(myEmployeeProfile);
 
         }
