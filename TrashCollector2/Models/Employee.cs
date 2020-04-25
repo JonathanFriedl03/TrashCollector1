@@ -20,7 +20,7 @@ namespace TrashCollector2.Models
         [Display( Name = "Zip Code")]
         public int ZipCode { get; set; }
         [Display(Name = "Pick Up Day")]
-        public DayOfWeek PickUpDay { get; set; }
+        public DayOfWeek? PickUpDay { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }

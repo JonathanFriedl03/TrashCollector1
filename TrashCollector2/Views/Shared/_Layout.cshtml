@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </head>
-<body>
+<body class="search-background">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Trash Collector</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarColor01"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -24,10 +24,10 @@
 
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item ">
-                        <a class="nav-link " asp-area="" asp-controller="Customers" asp-action="Create">Account Setup</a>
+                        <a class="nav-link " asp-area="Customer" asp-controller="Customers" asp-action="Create">Account Setup</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " asp-area="" asp-controller="Customers" asp-action="Index">View Account</a>
+                        <a class="nav-link " asp-area="Customer" asp-controller="Customers" asp-action="Index">View Account</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pricing</a>
@@ -46,9 +46,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top pl-3 footer text-white-50" style="background-color: #343a40">
         <div class="container">
-            &copy; 2020 - Trash Collector - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - Trash Collector
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

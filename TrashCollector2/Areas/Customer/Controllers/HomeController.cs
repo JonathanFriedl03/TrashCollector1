@@ -9,6 +9,7 @@ using TrashCollector2.Models;
 
 namespace TrashCollector2.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

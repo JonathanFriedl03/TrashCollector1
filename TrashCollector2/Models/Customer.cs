@@ -20,9 +20,9 @@ namespace TrashCollector2.Models
         [Display(Name = "Zip Code")]        
         public int ZipCode { get; set; }
         [Display(Name = "Pick Up Day")]
-        public DayOfWeek PickUpDay { get; set; }
+        public DayOfWeek? PickUpDay { get; set; }
         [Display(Name = "One Time Pick Up")]
-        public DayOfWeek OneTimePickUp { get; set; }
+        public DayOfWeek? OneTimePickUp { get; set; }
         [Display(Name = "Start of Suspension")]
         public DateTime StartOfSuspension { get; set; }
         [Display(Name = "End of Suspension")]

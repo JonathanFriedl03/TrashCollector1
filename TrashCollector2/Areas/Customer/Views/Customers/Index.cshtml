@@ -1,0 +1,113 @@
+﻿@model IEnumerable<TrashCollector2.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared_Layout.cshtml";
+}
+
+
+
+<br />
+<br />
+<div class="border backgroundWhite">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Profile</h2>
+        </div>
+        <div class="col-6 text-right">
+            Create Button
+        </div>
+    </div>
+    <br />
+    <div>
+
+    </div>
+    <div>
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-striped border">
+
+                <tr class="table-secondary">
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ZipCode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PickUpDay)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OneTimePickUp)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartOfSuspension)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndOfSupspension)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Budget)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdentityUser)
+                    </th>
+                    <th></th>
+                </tr>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.ZipCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.PickUpDay)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.OneTimePickUp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.StartOfSuspension)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.EndOfSupspension)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.Budget)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.IdentityUser.Id)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No info to display..Setup account here<a asp-action="Create">Account Setup</a></p>
+        }
+    </div>
+</div>
