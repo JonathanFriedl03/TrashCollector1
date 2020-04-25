@@ -13,6 +13,7 @@ using TrashCollector2.ViewModels;
 
 namespace TrashCollector2.Controllers
 {
+    [Area("Customer")]
     [Authorize(Roles = "Customer")]
     public class CustomersController : Controller
     {
